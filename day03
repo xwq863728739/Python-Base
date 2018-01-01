@@ -1,0 +1,58 @@
+python 数据类型:
+  number:int,float,long,complex(复数类型)
+  string
+  tuple 元组
+  list 列表
+  set 集合,存在争议
+  dict 字典
+  byte 字节
+  boolean 布尔类型
+  None 空值
+  
+变量与常量:
+  变量:存储数据的内存地址,使用前需要先定义,python中第一次给变量赋值是定义,后面为赋值
+  常量:程序运行期间不能改变的量
+  del:删除变量 如:del(num) 那么再引用num将会报错
+
+标识符:
+  标识符是一个字符串,但字符串不一定是标识符
+  标识符的命名规则:
+    1.只能由字母,数字,下划线组成
+    2.数字不能开头
+    3.见名知意
+    4.不能是python的关键字
+      查看python关键字:import keyword
+                      print(keyword.kwlist)
+    5.区分大小写
+    6.python推荐使用下划线连接单词,也可使用驼峰命名法
+
+查看变量的类型:
+  type(var)
+
+查看变量的内存地址:
+  id(var)
+  
+数据类型转换:
+  str(obj) 将对象转换成string类型
+  int(x) 将x转换成一个整数
+  float(x) 将x转换成一个浮点数
+
+math模块:
+  math.ceil(1.1) = 2 向上取整
+  math.floor(1.1) = 1 向下取整
+  math.modf(1.1) 返回一个数的整数部分和小数部分,均是浮点数表示,只接受数值类型数据
+  
+random模块:
+  random.random() 不接受参数,表示0 <= n < 1范围内的浮点数
+  random.uniform(1,2)/(2,1) 表示 1 <= n <= 2范围内的浮点数
+  random.randint(1,10) 表示 1 <= n <=10 范围内的整数,左边的值必须大于等于右边
+  random.randrange(1,10,1) 表示 1 <= n < 10范围内的整数,步长为1,也可以是负数
+  random.choice(list)随机抽取list中的一个数据
+  random.shuffle(list)打乱list的顺序,返回值为None,原来的列表list顺序改变,id不变
+  random.sample(list,3) 随机从list中抽取3个元素
+
+占位符
+  %d 整数类型占位符 
+  %f 浮点型数据占位符
+  %s 字符串类型占位符
+  
