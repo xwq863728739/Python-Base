@@ -1,0 +1,82 @@
+函数:需先定义后使用
+
+函数的参数:
+  定义函数的时候,参数叫做形式参数
+  调用函数的时候,参数叫做实际参数
+  调用函数时,传入的实际参数需与形式参数一一对应
+  
+函数的返回值:
+  return会把函数的结果返回给调用者
+  若不写return 默认为return None
+  return会终止函数,后面的代码都不执行 -- break只是跳出循环
+  
+可变数据类型的值传递问题:
+  list1 = [1,2,3]
+  def edit_list(list):
+    list[0]=5
+    print(list)
+  edit_list(list1)
+  print(list1)
+  '''
+  [5, 2, 3]
+  [5, 2, 3]
+  '''
+  可变数据类型在同一个存储空间进行修改,因此改了原来的也会变
+
+关键字参数:
+  关键字参数需写在非关键字参数后
+  def printPerson(name, age, likes):
+    print('name:%s' % name)
+    print('age:%d' % age)
+    print('likes:%s' % likes)
+  printPerson('李白', likes='玩游戏', age=20)
+ 
+默认值参数:
+  若实参没有传参数,则实参为默认值
+  def people(name, sex, age=88, likes='玩游戏'):
+    print('name=%s age=%d sex=%s likes=%s' % (name, age, sex, likes))
+  people('熊文强', '男', 20)
+  
+# 重点:不定长参数 *args
+# 如:max(参数1,参数2,...,参数n)
+# 用*表示的变量,用来接收多个没有命名的变量,会自动将这多个变量封装成 元组 ,并传到函数中
+# 若没有参数,是一个空的元组
+# 可变长参数放到参数列表后面
+def sum1(name, age, *args):
+    sum2 = 0
+    for i in args:
+        print(type(i))
+        sum2 += i
+    return name, age, sum2
+tuple1 = sum1('李白', 20, 1, 2, 3, 4)
+print(tuple1[0], tuple1[1], tuple1[2])
+
+# **kwargs 表示的参数,用来接收任意多个有命名的参数,会自动的将多个参数封装成字典,参数名作为key,参数值作为value
+# 如果没有命名的参数传递,会生成一个空的字典
+def func(**kwargs):
+    print(type(kwargs))
+    print(kwargs)
+func(age=20, name='李白')
+
+# 定义一个通用函数 架构师
+def fun1(*args, **kwargs):
+    print(args)
+    print(kwargs)
+fun1(12, 23, 1, '2', name='李白')
+
+# 匿名函数 lambda
+print((lambda x, y: x - y)(1, 2))
+
+# 注意: 在python中只有模块,函数,类会引入新的作用域
+# while,for,if,else不会引入新的作用域.在这些程序块内定义的变量在程序块外也能引用
+
+# 偏函数,参数1是需要修改的函数名,参数2是需要设置的默认值
+int()可接受一个字符串整数 -- base参数此时有效
+或者非字符串浮点数 -- -- base参数此时无效
+
+import functools 
+print(int('11', base=2))  二进制数转成十进制数
+print(int('34', base=8))  八进制数转成十进制数
+print(int('11', base=16)) 十六进制数转成十进制数
+func = functools.partial(int, base=2) 
+print(func('101'))
