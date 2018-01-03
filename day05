@@ -47,6 +47,11 @@ set集合
   改:
     不能改
     
+  set集合的交集,并集,差集(只有set有)
+    交集:set1&set2
+    并集:set1|set2
+    差集:set1-set2
+    
 list:
   特点:
     1.有序的
@@ -64,3 +69,15 @@ list:
     list.index(元素) 获取元素第一次匹配的索引
   改:
     list[index] = value 若index存在,覆盖原有值,若不存在则报错
+  lsit排序:
+    默认是升序
+    list.sort(reverse=True) 反转,变降序
+    sorted(list,reverse=True) 反转,变降序
+    list.reverse() 反转,变降序
+    
+ 
+ 浅拷贝与深拷贝
+ import copy
+ copy.copy(list)  浅拷贝,拷贝元素的内存地址
+ copy.deepcopy(list)  深拷贝,开创一个新的存储空间
+ 
