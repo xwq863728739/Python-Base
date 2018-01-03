@@ -25,3 +25,24 @@ tuple元组:
   查:
     tuple[index]根据索引查询对应的元素
     tuple.index(元素)查询元素第一次匹配到的索引
+
+set集合
+  特点:
+    1.可变数据类型
+    2.不重复的
+    3.无序的
+    4.相当于dict的key
+  创建:
+    {12,23},{}空的表示是一个字典
+    通过list,tuple,string,dict创建
+  增:
+    set.add(元素) 添加单个元素
+    set.update(序列) 添加多个元素
+  删:
+    set.pop() 随机删除一个元素,不能给参数
+    set.remove(元素) 删除指定的元素
+  查:
+    for i in set:
+      print(i,end=' ')
+  改:
+    不能改
