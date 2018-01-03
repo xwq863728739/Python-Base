@@ -46,3 +46,21 @@ set集合
       print(i,end=' ')
   改:
     不能改
+    
+list:
+  特点:
+    1.有序的
+    2.可重复的
+    3.可变数据类型
+  增:
+    list.append(元素) 往list末尾添加一个元素
+    list.extend(序列) 往list末尾添加多个元素
+  删:
+    list.pop(index) 删除索引对应的值
+    list.remove(元素) 删除指定的元素
+    list.clear() 清空list
+  查:
+    list[index] 获取索引对应的值
+    list.index(元素) 获取元素第一次匹配的索引
+  改:
+    list[index] = value 若index存在,覆盖原有值,若不存在则报错
