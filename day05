@@ -1,0 +1,19 @@
+dict字典:
+  以key:value的形式保存,dict是可变数据类型
+  key的特点:
+    1.无序的
+    2.唯一的
+    3.是不可变数据类型
+  
+  增/改:
+    dict[key]=value  若key不存在,则新增一个元素,若key存在,则覆盖原来的值
+    
+  删:
+    dict.pop(key) 删除key对应的元素,若key不存在,抛异常
+    dict.pop(key,default) 删除key对应的元素,若key不存在,返回默认值default
+    
+  查:
+    dict[key] 获取key对应的value,若key不存在,抛异常
+    dict.get(key) 获取key对应的value,key不存在返回None
+    dict.get(key,default) 获取key对应的value,若key不存在返回None
+    
