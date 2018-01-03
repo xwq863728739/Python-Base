@@ -17,3 +17,11 @@ dict字典:
     dict.get(key) 获取key对应的value,key不存在返回None
     dict.get(key,default) 获取key对应的value,若key不存在返回None
     
+tuple元组:
+  不可变数据类型,一个有序的集合,一旦初始化之后不能再修改
+  
+  增,删:没有这种操作
+  改:若tuple的元素是可变类型,可以对该元素的元素进行修改
+  查:
+    tuple[index]根据索引查询对应的元素
+    tuple.index(元素)查询元素第一次匹配到的索引
