@@ -1,0 +1,16 @@
+# 被其他模块导入时可以执行的代码
+def print_good(name):
+    print('wen is a good man%s'%name)
+
+# 当一个模块被其他模块导入的时候会执行该模块中的代码,而有些功能是不希望被导入的时候执行的代码
+# 可以使用 __name__ 属性来解决
+# __name__ : 是模块自动生成的,使用的模式不一样,值就不一样,如果是自己执行,值是__main__
+# 如果是被其他模块导入,__name__是自己的模块名
+print('__name__%s'%__name__)
+name = 'haha'
+attr = 'hello world'
+# print('非函数的功能模块')
+if __name__ == '__main__':
+    print('不希望被其他模块导入执行的代码')
+else:
+    print('在被其他模块导入时可以执行的代码')
