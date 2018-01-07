@@ -14,3 +14,13 @@ if __name__ == '__main__':
     print('不希望被其他模块导入执行的代码')
 else:
     print('在被其他模块导入时可以执行的代码')
+
+
+模板格式:
+def main():
+    print('hello')
+
+
+# 里面的功能模块不会被引用
+if __name__ == '__main__':
+    main()
