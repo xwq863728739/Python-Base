@@ -1,0 +1,18 @@
+# 数据的持久化
+# 序列化 -- 将对象保存到文件中 -- 写
+# import pickle
+import pickle
+
+# 参数1 obj: 需要保存的对象名
+# 参数2 file: 要保存的文件(已经打开的文件)
+list1 = ['奥巴马', '白素贞', '本拉登', '达赖']
+wf = open('1.txt', 'wb')
+pickle.dump(list1, wf)
+wf.close()
+
+# 反序列化 -- 文件中的数据读取出来转换成对象  --读
+# load(已经打开的文件)
+rf = open('1.txt', 'rb')
+res = pickle.load(rf)
+print(res)
+rf.close()
