@@ -1,2 +1,13 @@
+引入functools模块,执行functools.partial(参数1,参数2)方法修改函数的默认值
+参数1:要修改的函数名
+参数2:要修改的默认值
 
-  
+举个例子:
+import functools
+def fun1(x,y):
+    print(x+y)
+fun1 = functools.partial(fun1,y=2)
+fun1(10)
+# 结果12
+
+# 注意:假设有两个参数,只给其中一个设置默认值,那只能设置后面的参数
