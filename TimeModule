@@ -1,0 +1,76 @@
+'''
+时间戳:
+    计算机表示时间的形式
+    是一个以整数或者浮点数表示的一个时间差 相对于1970年1月1日,0点0分0秒
+^  
+时间元组:
+    年: tm_year
+    月: tm_mon 1到12
+    日: tm_mday 1到31
+    时: tm_hour 0到23
+    分: tm_min 0到59
+    秒: tm_sec 0到61
+    一周中的第几天: tm_wday 0到6
+    一年中的第几天: tm_yday 1 到 366
+    是否是夏令时:  tm_isdst	是否为夏令时，值有：1(夏令时)、0(不是夏令时)、-1(未知)，默认 -1 
+^
+字符串表示:
+    2018/1/5
+    2018-01-05 11:12
+    ...
+%a  本地（locale）简化星期名称
+%A  本地完整星期名称
+%b  本地简化月份名称
+%B  本地完整月份名称
+%c  本地相应的日期和时间表示
+%d  一个月中的第几天（01 - 31）
+%H  一天中的第几个小时（24小时制，00 - 23）
+%I  第几个小时（12小时制，01 - 12）
+%j  一年中的第几天（001 - 366）
+%m  月份（01 - 12）
+%M  分钟数（00 - 59）
+%p  本地am或者pm的相应符
+%S  秒（01 - 61）
+%U  一年中的星期数。（00 - 53星期天是一个星期的开始。）第一个星期天之前的所有天数都放在第0周
+%w  一个星期中的第几天（0 - 6，0是星期天）
+%W  和%U基本相同，不同的是%W以星期一为一个星期的开始。
+%x  本地相应日期
+%X  本地相应时间
+%y  去掉世纪的年份（00 - 99）
+%Y  完整的年份
+%Z  时区的名字（如果不存在为空字符）
+%%  ‘%’字符
+'''
+
+import time
+# 时间戳 --> 时间元组 -->时间字符串
+
+# 获取当前时间戳,单位是秒
+print(time.time())
+# time.gmtime()默认将时间戳转换成时间元组(世界标准时间UTC)
+timeTuple = time.gmtime()
+print(timeTuple)
+
+# time.gmtime()默认将时间戳转换成时间元组(本地时间UTC+8)
+timeTuple = time.localtime()
+print(timeTuple)
+
+# time.mktime(时间元组)将时间元组转换为时间戳,会忽略小数位
+timeC = time.mktime(timeTuple)
+print(timeC)
+
+# time.strftime('时间字符串格式',时间元组) 时间元组转时间字符串
+timeS = time.strftime('%Y-%m-%d %I:%M:%S',timeTuple)
+print(timeS)
+
+# 时间元组转时间字符串,有汉字时使用format()
+timeS = time.strftime('%Y{y}-%m{m}-%d{d} %I:%M:%S',timeTuple).format(y='年',m='月',d='日')
+print(timeS)
+
+# time.strptime('时间字符串','时间元组格式') 时间字符串转时间元组
+timeTuple = time.strptime('2018-01-01 12:30:00','%Y-%m-%d %I:%M:%S')
+print(timeTuple)
+
+# 时间字符串转时间元组,有汉字时用format()
+timeTuple = time.strptime('2018年-01月-01日 12:30:00','%Y{y}-%m{m}-%d{d} %I:%M:%S'.format(y='年',m='月',d='日'))
+print(timeTuple)
