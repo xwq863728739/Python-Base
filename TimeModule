@@ -74,3 +74,7 @@ print(timeTuple)
 # 时间字符串转时间元组,有汉字时用format()
 timeTuple = time.strptime('2018年-01月-01日 12:30:00','%Y{y}-%m{m}-%d{d} %I:%M:%S'.format(y='年',m='月',d='日'))
 print(timeTuple)
+
+
+
+注意: time.clock()会从第一次调用时开始计时,第一次无限接近0,之后每次调用都会显示与第一次的时间戳
