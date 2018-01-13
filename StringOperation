@@ -1,0 +1,11 @@
+字符串查找:
+  # find(str,start索引,end索引)
+  # index(str,start索引,end索引)
+  # find()从原字符串中找出指定的字符串,返回首个字母的索引,没有找到返回-1
+  strData = 'wen is 哈哈 good is men'
+  pathData = 'E:\python-workplace\qianfeng\day09\code'
+  # rfind()从右往左找,找到后返回第一个匹配到的索引,索引是从左到右0开始的
+  print(strData.rfind('is'))
+  print(strData.find('is', 2,6))
+  # index()与find类似,作用是一样的,如果没有找到会报错
+  print(strData.rindex('哈', 8, 9))
