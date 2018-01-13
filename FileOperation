@@ -1,0 +1,33 @@
+# 文件操作
+
+import os
+# os.path.abspath(文件名)获取文件的绝对路径
+path = os.path.abspath('1.txt')
+# os.getcwd()获得当前目录
+path2 = os.getcwd()
+print(path)
+print(path2)
+
+# os.path.join(目录,文件) 将目录和文件拼接起来
+path3 = os.path.join(path2,'1.txt')
+print(path3)
+
+# os.path.split() 将一个文件的完整目录拆分为目录和文件,返回一个元组
+path4 = os.path.split(path3)
+print(path4)
+
+# os.path.isfile()判断是否是文件,如果不是或者不存在返回False,存在返回True
+res = os.path.isfile(path4[1])
+print(res)
+
+# os.path.isdir()判断是否是目录,如果不是或者不存在返回False,存在返回True
+res = os.path.isdir(path4[0])
+print(res)
+
+# os.path.exists()判断文件是否存在,如果不存在返回False,存在返回True
+res = os.path.exists(path4[1])
+print(res)
+
+# os.path.splitext拆分出后缀名
+res = os.path.splitext(path3)
+print(res)
