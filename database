@@ -1,0 +1,146 @@
+1.mysql基本操作
+    1.连接mysql数据库
+        格式:net start mysql(数据库名)
+    2.关闭数据库
+        net stop mysql
+    3.登录mysql服务
+        格式:mysql -u root -p
+    4.查看版本信息
+        mysql> select version();
+    5.查看当前时间
+        mysql> select now();
+    6.退出
+        quit,exit
+2.数据库操作
+    1.查看当前有哪些数据库
+        格式:show databases;
+    2.创建一个数据库
+        格式:create database 数据库名 charset=utf8;
+    3.删除一个数据库
+        格式:drop database 数据库名;
+    4.使用数据库
+        格式:use 数据库名;
+    5.查看当前使用的数据库
+        格式:select database();
+3.表的操作
+    1.查看当前数据库有哪些表
+        格式:show tables;
+    2.创建一个表
+        格式:create table 表名(字段名及类型);
+        例子:create table student(id int auto_increment primary key, name varchar(20) not null,age int not null,
+        address varchar(20),gender bit default 1);
+        类型:int decimal(5,2) 一共五位,小数两位
+             var varchar text 布尔
+        约束:
+            primary key 主键
+            auto_increment 自增长
+    3.查看表结构:
+        格式:desc 表名;
+    4.查看创建表的语句
+        show create table 表名
+    5.删除表
+        格式:drop table 表名;
+    6.修改表
+        1.修改表名
+        格式: rename table 旧表名 to 新表名;
+        2.修改表的结构,add|drop|change
+            1.add添加一个字段
+                alter table 表名 add 字段名;
+                如:alter table student1 add phone int;
+                选中 + enter 复制
+            2.modify 修改字段类型
+                 alter table 表名 modify phone int;
+            2.change 修改字段
+                 alter table 表名 change 旧字段 新字段 类型;
+            4.drop 删除
+                 alter table 表名 drop 字段名;
+4.数据的操作
+    1.插入数据
+        1.插入全列数据
+        值的顺序需要与表结构对应
+        格式:insert into 表名 values(值1,值2,...值n)
+        id为0: 在上一个id上加1
+        id为大于0的 一个数:指定id,不能重复
+        2.缺省插入
+        格式:insert into 表名(字段名1,字段名2,...) values(值1,值2,...)
+        3.插入多条数据
+        格式:insert into 表名 values(值1,值2,...),(值1,值2,...)
+    2.修改数据
+        格式:update 表名  set 字段名1=值,字段名2=值,... where 条件
+        例子1:update student set name='白百何' where name='马蓉'
+        例子2:update student set age=22,address='纽约' where name='白百何'
+    3.删除数据
+        格式:delete from 表名 where 条件
+        例子:delete from student where name = '李白'
+        delete * from student 不加条件表示全部删除,谨慎使用
+    4.查看所有数据
+        格式:select * from 表名;
+5.查询数据
+    格式:
+    1.查询所有的数据
+        格式:select * from 表名;
+    2.按条件查询
+        格式:select 字段名1,字段名2,... from 表名 where 条件;
+        例子:mysql> select name from student where age<20;
+        可以使用字段名 as 别名来给字段名取别名,方便查看
+        mysql> select name as '姓名' from student;
+    3.查询条件中的运算符
+        1.比较运算符: >, <, >=, <=, =, !=
+            格式: select 字段名1,字段名2,... from 表名 where 字段名 比较运算符 值
+            例子: select * from student where age < 50;
+        2.逻辑运算符: and or not
+            例子1: select * from student where age<50 and age>10;
+            例子2: select * from student where not (age<50 and age>10);
+        3.模糊运算符: like
+            % 表示多个任意字符
+            _ 表示一个任意字符
+            mysql> select * from student where name like '熊__'; 匹配熊猫
+            mysql> select * from student where name like '熊%'; 匹配熊猫
+        4.范围查询
+            in(多个值) 判断一个值是否是多个值中的一个,age是否是25或者45
+            mysql> select * from student where age in (25,45);
+            between 值1 and 值2  判断一个值是否在值1与值2之间,包后
+            mysql> select * from student where age between 20 and 45;
+        5.空判断
+            is null 为空
+            is not null 不为空
+            格式: select * from student where address is null;
+        6.优先级
+            ()
+6.去除重复的值
+    例:select distinct 字段 from 表名;
+    mysql> select distinct gender from student;
+7.聚合函数
+    count(*) 获取当前结果总共有多少条
+    sum(列名) 求列名对应列的和
+    avg(列名) 求列名对应列的平均值
+    max(列名) 求列名对应列的最大值
+    min(列名) 求列名对应列的最小值
+
+    例子: 求当前表总共有多少条数据?
+        mysql> select count(*) from student;
+    例子: 求当前表age列的平均值?
+        mysql> select avg(age) from student;
+8.分组 group by
+    格式: select 字段名... from 表名 where 条件 group by 字段名
+    查看有多少个组
+    例子: select gender from student group by gender;
+    统计男生和女生分别有多少个?
+    mysql> select gender,count(*) from student group by gender;
+    需求: 统计所有女生的个数
+    mysql> select gender,count(*) from student group by gender having gender = 1;
+    where : 先执行查询条件
+    having : 在查询结果的基础上再查询
+9.排序
+    # 以哪个字段名排序,默认从小到大
+    格式: select 字段名... from 表名 where 条件 order by 字段名
+    例: 年龄从小到大
+    mysql> select * from student order by age,name desc/asc;
+    asc: 从小到大
+    desc: 从大到小
+10.分页
+    索引从0开始
+    格式: select 字段名... from 表名 where 条件 limit 索引值,数据量
+    mysql> select * from student limit 1,3;
+    select * from tablename limit 2,4
+    即取出第3条至第6条，4条记录
